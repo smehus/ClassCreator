@@ -9,6 +9,10 @@
 import UIKit
 import CoreData
 
+@objc protocol Mamal {
+    var name: String! { get set }
+    var species: String! { get set }
+}
 
 
 class ViewController: UIViewController {
@@ -23,7 +27,7 @@ class ViewController: UIViewController {
 extension ViewController {
     private func properties() {
         var count: UInt32 = 0
-        let allocatedClass: AnyClass = objc_allocateClassPair(NSObject.classForCoder(), "ManagedFlyweight", 0)!
+        let allocatedClass: AnyClass = objc_allocateClassPair(Flyweight.classForCoder(), "ManagedFlyweight", 0)!
         let props = class_copyPropertyList(Person.self, &count)!
 
         for prop in UnsafeBufferPointer(start: props, count: Int(count)) {
@@ -41,27 +45,27 @@ extension ViewController {
         free(props)
 
         objc_registerClassPair(allocatedClass)
-        let flyweight = allocatedClass.alloc() as! NSObject
-        flyweight.setValue("Scott", forKey: "firstName")
-        flyweight.setValue("Mehus", forKey: "lastName")
+        let flyweight = allocatedClass.alloc() as! Flyweight
+        flyweight.firstName = "Scott"
+        flyweight.lastName = "Mehus"
 
-        print("firstName: \(flyweight.value(forKey: "firstName")!) lastName: \(flyweight.value(forKey: "lastName")!)")
+
+
+        print("firstName: \(flyweight.firstName!) lastName: \(flyweight.lastName!)")
 
     }
 }
 
-class Dog {
+class Dog: Mamal {
     var name: String!
-    var breed: String!
+    var species: String!
 }
 
 extension ViewController {
     private func ivars() {
         var count: UInt32 = 0
-        let allocatedClass: AnyClass = objc_allocateClassPair(NSObject.classForCoder(), "Flyweight", 0)!
+        let allocatedClass: AnyClass = objc_allocateClassPair(Flyweight.classForCoder(), "Flyweight", 0)!
         let ivars = class_copyIvarList(Dog.self, &count)!
-
-
         for ivar in UnsafeBufferPointer(start: ivars, count: Int(count)) {
             let namePointer = ivar_getName(ivar)!
             let name = String(cString: namePointer)
@@ -76,12 +80,28 @@ extension ViewController {
 
         free(ivars)
 
-        objc_registerClassPair(allocatedClass)
-        let flyweight = allocatedClass.alloc() as! NSObject
-        flyweight.setValue("Ginger", forKey: "name")
-        flyweight.setValue("Poodle", forKey: "breed")
+        class_addProtocol(allocatedClass, Mamal.self)
 
-        print("name: \(flyweight.value(forKey: "name")!) breed: \(flyweight.value(forKey: "breed")!)")
+        objc_registerClassPair(allocatedClass)
+        let flyweight = allocatedClass.alloc() as! Flyweight
+        flyweight.name = "Ginger"
+        flyweight.species = "Poodle"
+
+        guard let name = flyweight.name, let species = flyweight.species else { fatalError() }
+        print("name: \(name) species: \(species)")
     }
 }
 
+
+@dynamicMemberLookup class Flyweight: NSObject {
+
+    subscript(dynamicMember member: String) -> String? {
+        get {
+            return value(forKey: member) as? String
+        }
+
+        set {
+            setValue(newValue, forKey: member)
+        }
+    }
+}
