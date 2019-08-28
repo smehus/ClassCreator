@@ -12,6 +12,10 @@
 		0277486C2315F77D00BF6ABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0277486A2315F77D00BF6ABA /* Main.storyboard */; };
 		0277486E2315F77F00BF6ABA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0277486D2315F77F00BF6ABA /* Assets.xcassets */; };
 		027748712315F77F00BF6ABA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0277486F2315F77F00BF6ABA /* LaunchScreen.storyboard */; };
+		0277488E23160BB600BF6ABA /* ClassCreator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0277488C23160BB600BF6ABA /* ClassCreator.xcdatamodeld */; };
+		0277489023160C5600BF6ABA /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277488F23160C5600BF6ABA /* CoreDataManager.swift */; };
+		0277489323160EF800BF6ABA /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277489123160EF800BF6ABA /* Person+CoreDataClass.swift */; };
+		0277489423160EF800BF6ABA /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277489223160EF800BF6ABA /* Person+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		0277486D2315F77F00BF6ABA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		027748702315F77F00BF6ABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		027748722315F77F00BF6ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0277488D23160BB600BF6ABA /* ClassCreator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClassCreator.xcdatamodel; sourceTree = "<group>"; };
+		0277488F23160C5600BF6ABA /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		0277489123160EF800BF6ABA /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0277489223160EF800BF6ABA /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +62,16 @@
 		027748652315F77D00BF6ABA /* ClassCreator */ = {
 			isa = PBXGroup;
 			children = (
+				0277489123160EF800BF6ABA /* Person+CoreDataClass.swift */,
+				0277489223160EF800BF6ABA /* Person+CoreDataProperties.swift */,
 				027748662315F77D00BF6ABA /* AppDelegate.swift */,
 				027748682315F77D00BF6ABA /* ViewController.swift */,
 				0277486A2315F77D00BF6ABA /* Main.storyboard */,
 				0277486D2315F77F00BF6ABA /* Assets.xcassets */,
 				0277486F2315F77F00BF6ABA /* LaunchScreen.storyboard */,
 				027748722315F77F00BF6ABA /* Info.plist */,
+				0277488C23160BB600BF6ABA /* ClassCreator.xcdatamodeld */,
+				0277488F23160C5600BF6ABA /* CoreDataManager.swift */,
 			);
 			path = ClassCreator;
 			sourceTree = "<group>";
@@ -135,7 +147,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0277488E23160BB600BF6ABA /* ClassCreator.xcdatamodeld in Sources */,
 				027748692315F77D00BF6ABA /* ViewController.swift in Sources */,
+				0277489423160EF800BF6ABA /* Person+CoreDataProperties.swift in Sources */,
+				0277489323160EF800BF6ABA /* Person+CoreDataClass.swift in Sources */,
+				0277489023160C5600BF6ABA /* CoreDataManager.swift in Sources */,
 				027748672315F77D00BF6ABA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +352,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0277488C23160BB600BF6ABA /* ClassCreator.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0277488D23160BB600BF6ABA /* ClassCreator.xcdatamodel */,
+			);
+			currentVersion = 0277488D23160BB600BF6ABA /* ClassCreator.xcdatamodel */;
+			path = ClassCreator.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0277485B2315F77D00BF6ABA /* Project object */;
 }

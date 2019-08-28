@@ -8,12 +8,6 @@
 
 import UIKit
 import CoreData
-import ObjectiveC.runtime
-
-@objc class Person: NSManagedObject {
-    @NSManaged var firstName: String!
-    @NSManaged var lastName: String!
-}
 
 class ViewController: UIViewController {
 
@@ -36,6 +30,8 @@ class ViewController: UIViewController {
             NSGetSizeAndAlignment(encoding, &size, &alignment)
             class_addIvar(allocatedClass, name, size, UInt8(alignment), encoding)
         }
+
+        free(ivars)
 
         objc_registerClassPair(allocatedClass)
         let flyweight = allocatedClass.alloc() as! NSObject
