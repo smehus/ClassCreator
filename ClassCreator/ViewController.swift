@@ -30,7 +30,7 @@ extension ViewController {
     }
 }
 
-class Dog: NSObject {
+@objc class Dog: NSObject {
     var species: String!
 }
 
@@ -39,6 +39,10 @@ extension ViewController {
 
         let dog = Dog()
         dog.species = "Scott"
+//
+//        Bridge.getIvar(dog)
+
+
 
         let creator: FlyweightCreator<Dog> = FlyweightCreator(className: "DogFlyweight", inspectionType: .ivar)
         let flyweight = creator.generate(from: dog)
@@ -101,14 +105,22 @@ struct FlyweightCreator<T: AnyObject> {
             let name = String(cString: namePointer)
 
             // Get Dog Speciies value
-            let objectIvar = inspectionType == .ivar ? class_getInstanceVariable(Dog.self, "species") : class_getProperty(Dog.self, "species")
-            let value = object_getIvar(object, objectIvar!)
+
+            let i = class_getInstanceVariable(Dog.self, "species")!
+            let iVal = object_getIvar(object, i)
+
+            // This seems to work.....
+            let objectIvar = class_getInstanceVariable(allocatedClass, "species")
+            let value = object_getIvar(instance, objectIvar!)
 
 
             // Set Dog Speciies Value on the flyweight
 //            let flyweightIvar: Ivar! = inspectionType == .ivar ? class_getInstanceVariable(allocatedClass, name)! : class_getProperty(Dog.self, name)
 //            object_setIvar(instance, flyweightIvar, value)
 
+            print("alksdjfk")
+            print("alksdjfk")
+            print("alksdjfk")
         }
 
         return instance

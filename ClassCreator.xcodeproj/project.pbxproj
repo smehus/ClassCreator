@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0249D6CA2318629600F61C88 /* Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0249D6C92318629600F61C88 /* Bridge.m */; };
 		027748672315F77D00BF6ABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027748662315F77D00BF6ABA /* AppDelegate.swift */; };
 		027748692315F77D00BF6ABA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027748682315F77D00BF6ABA /* ViewController.swift */; };
 		0277486C2315F77D00BF6ABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0277486A2315F77D00BF6ABA /* Main.storyboard */; };
@@ -19,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0249D6C52318626C00F61C88 /* ClassCreator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClassCreator-Bridging-Header.h"; sourceTree = "<group>"; };
+		0249D6C82318629600F61C88 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
+		0249D6C92318629600F61C88 /* Bridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bridge.m; sourceTree = "<group>"; };
 		027748632315F77D00BF6ABA /* ClassCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		027748662315F77D00BF6ABA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		027748682315F77D00BF6ABA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +76,9 @@
 				027748722315F77F00BF6ABA /* Info.plist */,
 				0277488C23160BB600BF6ABA /* ClassCreator.xcdatamodeld */,
 				0277488F23160C5600BF6ABA /* CoreDataManager.swift */,
+				0249D6C52318626C00F61C88 /* ClassCreator-Bridging-Header.h */,
+				0249D6C82318629600F61C88 /* Bridge.h */,
+				0249D6C92318629600F61C88 /* Bridge.m */,
 			);
 			path = ClassCreator;
 			sourceTree = "<group>";
@@ -108,6 +115,7 @@
 				TargetAttributes = {
 					027748622315F77D00BF6ABA = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1030;
 					};
 				};
 			};
@@ -152,6 +160,7 @@
 				0277489423160EF800BF6ABA /* Person+CoreDataProperties.swift in Sources */,
 				0277489323160EF800BF6ABA /* Person+CoreDataClass.swift in Sources */,
 				0277489023160C5600BF6ABA /* CoreDataManager.swift in Sources */,
+				0249D6CA2318629600F61C88 /* Bridge.m in Sources */,
 				027748672315F77D00BF6ABA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +307,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4HWQ95CTCF;
 				INFOPLIST_FILE = ClassCreator/Info.plist;
@@ -307,6 +317,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = mehus.scott.com.ClassCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ClassCreator/ClassCreator-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -316,6 +328,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4HWQ95CTCF;
 				INFOPLIST_FILE = ClassCreator/Info.plist;
@@ -325,6 +338,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = mehus.scott.com.ClassCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ClassCreator/ClassCreator-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
