@@ -13,6 +13,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let context = CoreDataManager.shared.managedContext
+        let person = Person(context: context)
+        person.firstName = "Ralph"
+        person.lastName = "Wiggums"
+
+        CoreDataManager.shared.saveContext()
+
         ivars()
         properties()
     }
@@ -20,12 +28,15 @@ class ViewController: UIViewController {
 
 extension ViewController {
     private func properties() {
-//        let creator: FlyweightCreator<Person> = FlyweightCreator(className: "PersonFlyweight", inspectionType: .property)
-//        let flyweight = creator.generate()
-//        flyweight.firstName = "Scott"
-//        flyweight.lastName = "Mehus"
-//
-//        print("firstName: \(flyweight.firstName!) lastName: \(flyweight.lastName!)")
+
+        let request: NSFetchRequest<Person> = Person.fetchRequest()
+
+        guard let person = try? CoreDataManager.shared.managedContext.fetch(request).first else { fatalError() }
+
+        let creator: FlyweightCreator<Person> = FlyweightCreator(className: "PersonFlyweight", inspectionType: .property)
+        let flyweight = creator.generate(from: person)
+
+        print("firstName: \(flyweight.firstName!) lastName: \(flyweight.lastName!)")
 
     }
 }
@@ -104,11 +115,13 @@ struct FlyweightCreator<T: AnyObject> {
 
             // Get Dog Speciies value
             let objectIvar = inspectionType == .ivar ? class_getInstanceVariable(T.self, name)! : class_getProperty(T.self, name)!
-            let objectValue = object_getIvar(object, objectIvar)
+            print("*** \(inspectionType) \(objectIvar)")
+            let objectValue = inspectionType == .ivar ? object_getIvar(object, objectIvar) : property_getAttributes(objectIvar)
+
 
             // Set Dog Speciies Value on the flyweight
             let flyweightIvar: Ivar! = inspectionType == .ivar ? class_getInstanceVariable(allocatedClass, name)! : class_getProperty(allocatedClass, name)
-            object_setIvar(instance, flyweightIvar, objectValue)
+             object_setIvar(instance, flyweightIvar, objectValue)
         }
 
         return instance
