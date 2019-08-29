@@ -29,15 +29,6 @@ class ViewController: UIViewController {
 extension ViewController {
     private func properties() {
 
-        let request: NSFetchRequest<Person> = Person.fetchRequest()
-
-        guard let person = try? CoreDataManager.shared.managedContext.fetch(request).first else { fatalError() }
-
-        let creator: FlyweightCreator<Person> = FlyweightCreator(className: "PersonFlyweight", inspectionType: .property)
-        let flyweight = creator.generate(from: person)
-
-        print("firstName: \(flyweight.firstName!) lastName: \(flyweight.lastName!)")
-
     }
 }
 
