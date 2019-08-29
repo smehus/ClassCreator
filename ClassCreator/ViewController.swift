@@ -9,12 +9,6 @@
 import UIKit
 import CoreData
 
-@objc protocol Mamal {
-    var name: String! { get set }
-    var species: String! { get set }
-}
-
-
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -26,30 +20,30 @@ class ViewController: UIViewController {
 
 extension ViewController {
     private func properties() {
-        let creator: FlyweightCreator<Person> = FlyweightCreator(className: "PersonFlyweight", inspectionType: .property)
-        let flyweight = creator.generate()
-        flyweight.firstName = "Scott"
-        flyweight.lastName = "Mehus"
-
-        print("firstName: \(flyweight.firstName!) lastName: \(flyweight.lastName!)")
+//        let creator: FlyweightCreator<Person> = FlyweightCreator(className: "PersonFlyweight", inspectionType: .property)
+//        let flyweight = creator.generate()
+//        flyweight.firstName = "Scott"
+//        flyweight.lastName = "Mehus"
+//
+//        print("firstName: \(flyweight.firstName!) lastName: \(flyweight.lastName!)")
 
     }
 }
 
-class Dog: Mamal {
-    var name: String!
+class Dog: NSObject {
     var species: String!
 }
 
 extension ViewController {
     private func ivars() {
+
+        let dog = Dog()
+        dog.species = "Scott"
+
         let creator: FlyweightCreator<Dog> = FlyweightCreator(className: "DogFlyweight", inspectionType: .ivar)
-        let flyweight = creator.generate()
+        let flyweight = creator.generate(from: dog)
 
-        flyweight.name = "Ginger"
-        flyweight.species = "Poodle"
-
-        print("name \(flyweight.name!) species: \(flyweight.species!)")
+        print("species: \(flyweight.species!)")
     }
 }
 
@@ -68,11 +62,17 @@ struct FlyweightCreator<T: AnyObject> {
         self.inspectionType = inspectionType
     }
 
-    func generate() -> Flyweight {
+    func generate(from object: AnyObject) -> Flyweight {
         var count: UInt32 = 0
+        // Create class
         let allocatedClass: AnyClass = objc_allocateClassPair(Flyweight.classForCoder(), className, 0)!
-        let ivars = inspectionType == .ivar ? class_copyIvarList(T.self, &count)! : class_copyPropertyList(T.self, &count)
 
+        // Get all ivars out of input class
+        let ivars = inspectionType == .ivar ? class_copyIvarList(T.self, &count)! : class_copyPropertyList(T.self, &count)
+        defer { free(ivars) }
+
+
+        // Copy over ivars from input class into created class
         for ivar in UnsafeBufferPointer(start: ivars, count: Int(count)) {
             let namePointer = inspectionType == .ivar ? ivar_getName(ivar)! : property_getName(ivar)
             let name = String(cString: namePointer)
@@ -85,13 +85,33 @@ struct FlyweightCreator<T: AnyObject> {
             class_addIvar(allocatedClass, name, size, UInt8(alignment), encoding)
         }
 
-        free(ivars)
+
 
 //        class_addProtocol(allocatedClass, Mamal.self)
 
+        // Register class
         objc_registerClassPair(allocatedClass)
 
-        return allocatedClass.alloc() as! Flyweight
+        // Creat instance of new class
+        let instance = allocatedClass.alloc() as! Flyweight
+
+        // Populate new class ivars with input instance
+        for ivar in UnsafeBufferPointer(start: ivars, count: Int(count)) {
+            let namePointer = inspectionType == .ivar ? ivar_getName(ivar)! : property_getName(ivar)
+            let name = String(cString: namePointer)
+
+            // Get Dog Speciies value
+            let objectIvar = inspectionType == .ivar ? class_getInstanceVariable(Dog.self, "species") : class_getProperty(Dog.self, "species")
+            let value = object_getIvar(object, objectIvar!)
+
+
+            // Set Dog Speciies Value on the flyweight
+//            let flyweightIvar: Ivar! = inspectionType == .ivar ? class_getInstanceVariable(allocatedClass, name)! : class_getProperty(Dog.self, name)
+//            object_setIvar(instance, flyweightIvar, value)
+
+        }
+
+        return instance
     }
 }
 
