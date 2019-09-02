@@ -21,8 +21,8 @@ class ViewController: UIViewController {
 
         CoreDataManager.shared.saveContext()
 
-        ivars()
-//        properties()
+//        ivars()
+        properties()
     }
 }
 
@@ -36,7 +36,7 @@ extension ViewController {
         let creator: FlyweightCreator<Person> = FlyweightCreator(className: "PersonFlyweight")
         let flyweight = creator.generate(from: person)
 
-//        print("firstName: \(flyweight.firstName!) lastName: \(flyweight.lastName!)")
+        print("firstName: \(flyweight.firstName) lastName: \(flyweight.lastName)")
 
     }
 }
@@ -93,6 +93,7 @@ struct FlyweightCreator<T: AnyObject> {
             class_addIvar(allocatedClass, name, ivarSize, UInt8(ivarAlignment), encoding)
         }
 
+        // Get all Ivars
         let ivarList = class_copyIvarList(T.self, &ivarCount)
         defer { free(ivarList) }
 
@@ -116,13 +117,24 @@ struct FlyweightCreator<T: AnyObject> {
         // Creat instance of new class
         let instance = allocatedClass.alloc() as! Flyweight
 
-
         // Populate new class ivars with input instance
         for ivar in UnsafeBufferPointer(start: ivarList, count: Int(ivarCount)) {
             guard let namePointer = ivar_getName(ivar) else { print("🔥 Failed to get ivar name"); continue }
             let name = String(cString: namePointer)
             let inputValue = object_getIvar(object, ivar)
 
+            guard let createdClassIvar = class_getInstanceVariable(allocatedClass, name) else { continue }
+            object_setIvar(instance, createdClassIvar, inputValue)
+        }
+
+
+        // Populate properties into ivars
+        for property in UnsafeBufferPointer(start: propertyList, count: Int(propertyCount)) {
+            let namePointer = property_getName(property)
+            let name = String(cString: namePointer)
+            guard let castedObject = object as? NSObject else { fatalError() }
+
+            let inputValue = castedObject.value(forKey: name)
             guard let createdClassIvar = class_getInstanceVariable(allocatedClass, name) else { continue }
             object_setIvar(instance, createdClassIvar, inputValue)
         }
