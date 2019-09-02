@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0249D6CA2318629600F61C88 /* Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0249D6C92318629600F61C88 /* Bridge.m */; };
+		0249FA9E231DA6D700495256 /* FlyweightCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0249FA9D231DA6D700495256 /* FlyweightCreator.swift */; };
+		0249FAA6231DA74500495256 /* ClassCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0249FAA5231DA74500495256 /* ClassCreatorTests.swift */; };
 		027748672315F77D00BF6ABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027748662315F77D00BF6ABA /* AppDelegate.swift */; };
 		027748692315F77D00BF6ABA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027748682315F77D00BF6ABA /* ViewController.swift */; };
 		0277486C2315F77D00BF6ABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0277486A2315F77D00BF6ABA /* Main.storyboard */; };
@@ -19,10 +21,24 @@
 		0277489423160EF800BF6ABA /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277489223160EF800BF6ABA /* Person+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0249FAA8231DA74500495256 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0277485B2315F77D00BF6ABA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 027748622315F77D00BF6ABA;
+			remoteInfo = ClassCreator;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0249D6C52318626C00F61C88 /* ClassCreator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClassCreator-Bridging-Header.h"; sourceTree = "<group>"; };
 		0249D6C82318629600F61C88 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		0249D6C92318629600F61C88 /* Bridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bridge.m; sourceTree = "<group>"; };
+		0249FA9D231DA6D700495256 /* FlyweightCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyweightCreator.swift; sourceTree = "<group>"; };
+		0249FAA3231DA74500495256 /* ClassCreatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClassCreatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0249FAA5231DA74500495256 /* ClassCreatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCreatorTests.swift; sourceTree = "<group>"; };
+		0249FAA7231DA74500495256 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		027748632315F77D00BF6ABA /* ClassCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		027748662315F77D00BF6ABA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		027748682315F77D00BF6ABA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +53,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0249FAA0231DA74500495256 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		027748602315F77D00BF6ABA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -47,10 +70,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0249FAA4231DA74500495256 /* ClassCreatorTests */ = {
+			isa = PBXGroup;
+			children = (
+				0249FAA5231DA74500495256 /* ClassCreatorTests.swift */,
+				0249FAA7231DA74500495256 /* Info.plist */,
+			);
+			path = ClassCreatorTests;
+			sourceTree = "<group>";
+		};
 		0277485A2315F77D00BF6ABA = {
 			isa = PBXGroup;
 			children = (
 				027748652315F77D00BF6ABA /* ClassCreator */,
+				0249FAA4231DA74500495256 /* ClassCreatorTests */,
 				027748642315F77D00BF6ABA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				027748632315F77D00BF6ABA /* ClassCreator.app */,
+				0249FAA3231DA74500495256 /* ClassCreatorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,6 +113,7 @@
 				0249D6C52318626C00F61C88 /* ClassCreator-Bridging-Header.h */,
 				0249D6C82318629600F61C88 /* Bridge.h */,
 				0249D6C92318629600F61C88 /* Bridge.m */,
+				0249FA9D231DA6D700495256 /* FlyweightCreator.swift */,
 			);
 			path = ClassCreator;
 			sourceTree = "<group>";
@@ -86,6 +121,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0249FAA2231DA74500495256 /* ClassCreatorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0249FAAA231DA74500495256 /* Build configuration list for PBXNativeTarget "ClassCreatorTests" */;
+			buildPhases = (
+				0249FA9F231DA74500495256 /* Sources */,
+				0249FAA0231DA74500495256 /* Frameworks */,
+				0249FAA1231DA74500495256 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0249FAA9231DA74500495256 /* PBXTargetDependency */,
+			);
+			name = ClassCreatorTests;
+			productName = ClassCreatorTests;
+			productReference = 0249FAA3231DA74500495256 /* ClassCreatorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		027748622315F77D00BF6ABA /* ClassCreator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 027748752315F77F00BF6ABA /* Build configuration list for PBXNativeTarget "ClassCreator" */;
@@ -109,10 +162,14 @@
 		0277485B2315F77D00BF6ABA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1030;
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Scott Mehus";
 				TargetAttributes = {
+					0249FAA2231DA74500495256 = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = 027748622315F77D00BF6ABA;
+					};
 					027748622315F77D00BF6ABA = {
 						CreatedOnToolsVersion = 10.3;
 						LastSwiftMigration = 1030;
@@ -133,11 +190,19 @@
 			projectRoot = "";
 			targets = (
 				027748622315F77D00BF6ABA /* ClassCreator */,
+				0249FAA2231DA74500495256 /* ClassCreatorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0249FAA1231DA74500495256 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		027748612315F77D00BF6ABA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -151,6 +216,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0249FA9F231DA74500495256 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0249FAA6231DA74500495256 /* ClassCreatorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0277485F2315F77D00BF6ABA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -159,6 +232,7 @@
 				027748692315F77D00BF6ABA /* ViewController.swift in Sources */,
 				0277489423160EF800BF6ABA /* Person+CoreDataProperties.swift in Sources */,
 				0277489323160EF800BF6ABA /* Person+CoreDataClass.swift in Sources */,
+				0249FA9E231DA6D700495256 /* FlyweightCreator.swift in Sources */,
 				0277489023160C5600BF6ABA /* CoreDataManager.swift in Sources */,
 				0249D6CA2318629600F61C88 /* Bridge.m in Sources */,
 				027748672315F77D00BF6ABA /* AppDelegate.swift in Sources */,
@@ -166,6 +240,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0249FAA9231DA74500495256 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 027748622315F77D00BF6ABA /* ClassCreator */;
+			targetProxy = 0249FAA8231DA74500495256 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0277486A2315F77D00BF6ABA /* Main.storyboard */ = {
@@ -187,6 +269,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0249FAAB231DA74500495256 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4HWQ95CTCF;
+				INFOPLIST_FILE = ClassCreatorTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = mehus.scott.com.ClassCreatorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ClassCreator.app/ClassCreator";
+			};
+			name = Debug;
+		};
+		0249FAAC231DA74500495256 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4HWQ95CTCF;
+				INFOPLIST_FILE = ClassCreatorTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = mehus.scott.com.ClassCreatorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ClassCreator.app/ClassCreator";
+			};
+			name = Release;
+		};
 		027748732315F77F00BF6ABA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -347,6 +471,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0249FAAA231DA74500495256 /* Build configuration list for PBXNativeTarget "ClassCreatorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0249FAAB231DA74500495256 /* Debug */,
+				0249FAAC231DA74500495256 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0277485E2315F77D00BF6ABA /* Build configuration list for PBXProject "ClassCreator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
