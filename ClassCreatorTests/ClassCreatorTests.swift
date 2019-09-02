@@ -26,6 +26,25 @@ class ClassCreatorTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+    func test_swizzle() {
+        let originalSelector = #selector(UIViewController.viewWillAppear(_:))
+        let replacementSelector = #selector(myViewWillAppear(animated:))
+
+        let originalMethod = class_getInstanceMethod(ViewController.self, originalSelector)
+        let replacementMethod = class_getInstanceMethod(type(of: self), replacementSelector)
+
+        let didAddMethod = class_addMethod(ViewController.self, replacementSelector, method_getImplementation(replacementMethod!), method_getTypeEncoding(replacementMethod!))
+        if didAddMethod {
+            class_replaceMethod(ViewController.self, replacementSelector, method_getImplementation(originalMethod!), method_getTypeEncoding(originalMethod!))
+        } else {
+            method_exchangeImplementations(originalMethod!, replacementMethod!);
+        }
+    }
+
+    func myViewWillAppear(animated: Bool) {
+        print("*** hYEYEYEYEYEYOO IT WORKS")
+    }
+
     func test_ManagedObjectModel() {
         let request: NSFetchRequest<Person> = Person.fetchRequest()
 
