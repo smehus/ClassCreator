@@ -7,11 +7,19 @@
 //
 
 import XCTest
+@testable import ClassCreator
+import CoreData
 
 class ClassCreatorTests: XCTestCase {
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let context = CoreDataManager.shared.managedContext
+        let person = Person(context: context)
+        person.firstName = "Ralph"
+        person.lastName = "Wiggums"
+
+        CoreDataManager.shared.saveContext()
+
     }
 
     override func tearDown() {
@@ -19,11 +27,28 @@ class ClassCreatorTests: XCTestCase {
     }
 
     func test_ManagedObjectModel() {
+        let request: NSFetchRequest<Person> = Person.fetchRequest()
 
+        guard let person = try? CoreDataManager.shared.managedContext.fetch(request).first else { fatalError() }
+
+        let creator: FlyweightCreator<Person> = FlyweightCreator(className: "PersonFlyweight")
+        let flyweight = creator.generate(from: person)
+
+        XCTAssert(flyweight.firstName == "Ralph")
+        XCTAssert(flyweight.lastName == "Wiggums")
     }
 
     func test_ClassModel() {
-        
+        let dog = Dog()
+        dog.species = "Poodle"
+        dog.name = "Scott"
+
+        let creator: FlyweightCreator<Dog> = FlyweightCreator(className: "DogFlyweight")
+        let flyweight = creator.generate(from: dog)
+
+
+        XCTAssert(flyweight.name == "Scott")
+        XCTAssert(flyweight.species == "Poodle")
     }
 
     func testPerformanceExample() {
