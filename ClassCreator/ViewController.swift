@@ -21,8 +21,8 @@ class ViewController: UIViewController {
 
         CoreDataManager.shared.saveContext()
 
-//        ivars()
-        properties()
+        ivars()
+//        properties()
     }
 }
 
@@ -56,7 +56,7 @@ extension ViewController {
         let creator: FlyweightCreator<Dog> = FlyweightCreator(className: "DogFlyweight")
         let flyweight = creator.generate(from: dog)
 
-//        print("name: \(flyweight.name!) species: \(flyweight.species!)")
+        print("name: \(flyweight.name) species: \(flyweight.species)")
     }
 }
 
@@ -119,17 +119,12 @@ struct FlyweightCreator<T: AnyObject> {
 
         // Populate new class ivars with input instance
         for ivar in UnsafeBufferPointer(start: ivarList, count: Int(ivarCount)) {
-            let namePointer = property_getName(ivar)
+            guard let namePointer = ivar_getName(ivar) else { print("🔥 Failed to get ivar name"); continue }
             let name = String(cString: namePointer)
+            let inputValue = object_getIvar(object, ivar)
 
-            // Get Dog Speciies value
-            let objectIvar = class_getProperty(T.self, name)!
-            let objectValue = property_getAttributes(objectIvar)
-
-            // Set Dog Speciies Value on the flyweight
-
-            let flyweightIvar = class_getInstanceVariable(allocatedClass, name)!
-            object_setIvar(instance, flyweightIvar, objectValue)
+            guard let createdClassIvar = class_getInstanceVariable(allocatedClass, name) else { continue }
+            object_setIvar(instance, createdClassIvar, inputValue)
         }
 
         return instance
