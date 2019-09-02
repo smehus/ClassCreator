@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0249FA9E231DA6D700495256 /* FlyweightCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0249FA9D231DA6D700495256 /* FlyweightCreator.swift */; };
-		0249FAA6231DA74500495256 /* ClassCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0249FAA5231DA74500495256 /* ClassCreatorTests.swift */; };
 		0249FAAE231DA8F200495256 /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0249FAAD231DA8F200495256 /* Dog.swift */; };
 		0249FAAF231DA8F200495256 /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0249FAAD231DA8F200495256 /* Dog.swift */; };
+		0249FAB1231DB5B000495256 /* ClassCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0249FAA5231DA74500495256 /* ClassCreatorTests.swift */; };
 		027748672315F77D00BF6ABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027748662315F77D00BF6ABA /* AppDelegate.swift */; };
 		027748692315F77D00BF6ABA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027748682315F77D00BF6ABA /* ViewController.swift */; };
 		0277486C2315F77D00BF6ABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0277486A2315F77D00BF6ABA /* Main.storyboard */; };
@@ -220,7 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0249FAAF231DA8F200495256 /* Dog.swift in Sources */,
-				0249FAA6231DA74500495256 /* ClassCreatorTests.swift in Sources */,
+				0249FAB1231DB5B000495256 /* ClassCreatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +439,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "'-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = mehus.scott.com.ClassCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ClassCreator/ClassCreator-Bridging-Header.h";
@@ -460,6 +461,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "'-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = mehus.scott.com.ClassCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ClassCreator/ClassCreator-Bridging-Header.h";

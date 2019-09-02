@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,7 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let stack = CoreDataManager.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
+            let originalSelector = #selector(ViewController.viewWillAppear(_:))
+            let replacementSelector = #selector(ViewController.myViewWillAppear(animated:))
+
+            let originalMethod = class_getInstanceMethod(ViewController.self, originalSelector)
+            let replacementMethod = class_getInstanceMethod(ViewController.self, replacementSelector)
+
+            let didAddMethod = class_addMethod(ViewController.self, originalSelector, method_getImplementation(replacementMethod!), method_getTypeEncoding(replacementMethod!))
+
+            if didAddMethod {
+                class_replaceMethod(ViewController.self, replacementSelector, method_getImplementation(originalMethod!), method_getTypeEncoding(originalMethod!))
+            } else {
+                method_exchangeImplementations(originalMethod!, replacementMethod!);
+            }
+        }
+
         return true
     }
 
@@ -44,4 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
+extension ViewController {
+    @objc public func myViewWillAppear(animated: Bool) {
+        
+    }
+}
